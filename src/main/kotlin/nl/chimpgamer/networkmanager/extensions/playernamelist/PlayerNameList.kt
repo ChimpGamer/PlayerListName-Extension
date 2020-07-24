@@ -5,7 +5,6 @@ import nl.chimpgamer.networkmanager.api.utils.PlatformType
 import nl.chimpgamer.networkmanager.extensions.playernamelist.configrations.Formats
 import nl.chimpgamer.networkmanager.extensions.playernamelist.listeners.PlayerListener
 import nl.chimpgamer.networkmanager.extensions.playernamelist.tasks.PlayerNameListUpdateTask
-import nl.chimpgamer.networkmanager.spigot.NetworkManager
 import org.bukkit.event.HandlerList
 
 class PlayerNameList : NMExtension() {
@@ -33,9 +32,5 @@ class PlayerNameList : NMExtension() {
 
     override fun onDisable() {
         HandlerList.unregisterAll(playerListener)
-    }
-
-    override fun getNetworkManager(): NetworkManager {
-        return super.getNetworkManager() as NetworkManager
     }
 }
