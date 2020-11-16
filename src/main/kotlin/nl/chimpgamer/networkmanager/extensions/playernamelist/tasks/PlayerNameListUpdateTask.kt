@@ -8,8 +8,11 @@ class PlayerNameListUpdateTask(private val playerNameList: PlayerNameList) : Run
     override fun run() {
         Bukkit.getOnlinePlayers().forEach { player ->
             val format = playerNameList.formats.getFormat(player) ?: return
-            playerNameList.networkManager.cacheManager.cachedPlayers.getIfLoaded(player.uniqueId).ifPresent { nmPlayer ->
-                player.playerListName = Placeholders.setPlaceholders(nmPlayer, format.prefix + format.name + format.suffix, true, true)
+            playerNameList.networkManager.cacheManager.cachedPlayers.getIfLoaded(player.uniqueId).let { nmPlayer ->
+                player.playerListName = Placeholders.setPlaceholders(nmPlayer, format.prefix + format.name + format.suffix,
+                    formatText = true,
+                    usePAPI = true
+                )
             }
         }
     }

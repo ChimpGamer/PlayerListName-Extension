@@ -2,13 +2,13 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     base
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.10"
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "5.2.0"
+    id("com.github.johnrengelman.shadow") version "6.0.0"
 }
 
 group = "nl.chimpgamer.networkmanager.extensions"
-version = "1.0.4-SNAPSHOT"
+version = "1.0.5"
 
 repositories {
     mavenLocal()
@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib-jdk8"))
-    compileOnly(files("./libs/NetworkManagerAPI-v2.8.9-SNAPSHOT.jar"))
+    compileOnly(files("./libs/NetworkManagerAPI-v2.9.0.jar"))
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
     compileOnly("com.github.Carleslc:Simple-YAML:1.4.1")
 }
@@ -39,7 +39,7 @@ tasks {
     }
     shadowJar {
         archiveFileName.set("${project.name}-v${project.version}.jar")
-        relocate("kotlin", "nl.chimpgamer.networkmanager.lib.kotlin")
+        relocate("kotlin", "nl.chimpgamer.networkmanager.shaded.kotlin")
         relocate("org.simpleyaml", "nl.chimpgamer.networkmanager.lib.simpleyaml")
     }
     build {
