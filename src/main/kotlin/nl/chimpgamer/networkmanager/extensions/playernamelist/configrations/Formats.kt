@@ -27,9 +27,8 @@ class Formats(private val playerNameList: PlayerNameList) : FileUtils(playerName
         }
     }
 
-    fun getUpdateInterval(): Int {
-        return getInt("updateInterval", 10)
-    }
+    val updateInterval: Int
+        get() = getInt("updateInterval", 10)
 
     fun getFormat(player: Player): Format? {
         val formats = ArrayList<Format>()
@@ -45,7 +44,7 @@ class Formats(private val playerNameList: PlayerNameList) : FileUtils(playerName
         if (formats.isEmpty()) {
             playerNameList.logger.warning("There are no formats available. Please add atleast one format to the formats.yml!")
         }
-        return formats.maxBy { it.priority }
+        return formats.maxByOrNull { it.priority }
     }
 
     override fun reload() {
@@ -56,10 +55,10 @@ class Formats(private val playerNameList: PlayerNameList) : FileUtils(playerName
 
     private fun setupFile() {
         if (!file.exists()) {
-            try {
-                saveToFile(playerNameList.getResource("formats.yml"))
+            playerNameList.getResource("formats.yml")?.use {
+                saveToFile(it)
                 loadData()
-            } catch (ex: NullPointerException) {
+            } ?: run {
                 try {
                     file.createNewFile()
                 } catch (ex1: IOException) {

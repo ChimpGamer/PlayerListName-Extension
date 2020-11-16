@@ -24,6 +24,9 @@ class PlayerListener(private val playerNameList: PlayerNameList) : Listener {
     private fun applyPlayerListName(player: Player) {
         val format = playerNameList.formats.getFormat(player) ?: return
         val nmPlayer = playerNameList.networkManager.getPlayer(player.uniqueId) ?: return
-        player.playerListName = Placeholders.setPlaceholders(nmPlayer, format.prefix + format.name + format.suffix, true, true)
+        player.playerListName = Placeholders.setPlaceholders(nmPlayer, format.prefix + format.name + format.suffix,
+            formatText = true,
+            usePAPI = true
+        )
     }
 }

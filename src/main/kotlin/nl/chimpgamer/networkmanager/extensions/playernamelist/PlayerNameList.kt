@@ -23,7 +23,7 @@ class PlayerNameList : NMExtension() {
         formats.initialize()
 
         networkManager.registerListener(playerListener)
-        networkManager.scheduler.runRepeating(PlayerNameListUpdateTask(this), formats.getUpdateInterval())
+        networkManager.scheduler.runRepeating(PlayerNameListUpdateTask(this), formats.updateInterval)
     }
 
     override fun onConfigsReload() {
