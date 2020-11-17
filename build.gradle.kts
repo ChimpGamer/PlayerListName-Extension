@@ -13,8 +13,8 @@ version = "1.0.5"
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url = uri("https://hub.spigotmc.org/nexus/content/groups/public/") }
-    maven { url = uri("https://jitpack.io") }
+    maven("https://hub.spigotmc.org/nexus/content/groups/public/")
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -39,7 +39,7 @@ tasks {
     }
     shadowJar {
         archiveFileName.set("${project.name}-v${project.version}.jar")
-        relocate("kotlin", "nl.chimpgamer.networkmanager.shaded.kotlin")
+        relocate("kotlin", "nl.chimpgamer.networkmanager.lib.kotlin")
         relocate("org.simpleyaml", "nl.chimpgamer.networkmanager.lib.simpleyaml")
     }
     build {
