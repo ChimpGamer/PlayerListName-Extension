@@ -1,6 +1,6 @@
 name: PlayerNameList
 authors: [ChimpGamer]
-version: @version@
+version: ${version}
 description: PlayerNameList Extension for NetworkManager
 main: nl.chimpgamer.networkmanager.extensions.playernamelist.PlayerNameList
-api-version: 2.9.0
+api-version: 2.9.9

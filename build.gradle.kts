@@ -1,27 +1,24 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 plugins {
-    base
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.5.30"
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "6.0.0"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 group = "nl.chimpgamer.networkmanager.extensions"
-version = "1.0.5"
+version = "1.0.6"
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven("https://hub.spigotmc.org/nexus/content/groups/public/")
+    maven("https://repo.networkmanager.xyz/repository/maven-public")
     maven("https://jitpack.io")
 }
 
 dependencies {
     compileOnly(kotlin("stdlib-jdk8"))
-    compileOnly(files("./libs/NetworkManagerAPI-v2.9.0.jar"))
+    compileOnly("nl.chimpgamer.networkmanager:api:2.10.0")
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
-    compileOnly("com.github.Carleslc:Simple-YAML:1.4.1")
+    compileOnly("com.github.Carleslc:Simple-YAML:1.7.2")
 }
 
 tasks {
@@ -32,10 +29,7 @@ tasks {
         kotlinOptions.jvmTarget = "1.8"
     }
     processResources {
-        val tokens = mapOf("version" to project.version)
-        from(sourceSets["main"].resources.srcDirs) {
-            filter<ReplaceTokens>("tokens" to tokens)
-        }
+        expand("version" to project.version)
     }
     shadowJar {
         archiveFileName.set("${project.name}-v${project.version}.jar")

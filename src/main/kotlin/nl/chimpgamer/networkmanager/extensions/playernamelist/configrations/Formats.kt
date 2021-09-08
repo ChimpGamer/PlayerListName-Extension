@@ -4,13 +4,12 @@ import nl.chimpgamer.networkmanager.api.utils.FileUtils
 import nl.chimpgamer.networkmanager.extensions.playernamelist.PlayerNameList
 import nl.chimpgamer.networkmanager.extensions.playernamelist.models.Format
 import org.bukkit.entity.Player
-import java.io.IOException
 
 class Formats(private val playerNameList: PlayerNameList) : FileUtils(playerNameList.dataFolder.absolutePath, "formats.yml") {
     private var formats: MutableMap<String, Format> = HashMap()
 
     fun initialize() {
-        setupFile()
+        setupFile(playerNameList.getResource("formats.yml"))
         formats = HashMap()
         loadData()
     }
@@ -51,20 +50,5 @@ class Formats(private val playerNameList: PlayerNameList) : FileUtils(playerName
         super.reload()
         formats.clear()
         loadData()
-    }
-
-    private fun setupFile() {
-        if (!file.exists()) {
-            playerNameList.getResource("formats.yml")?.use {
-                saveToFile(it)
-                loadData()
-            } ?: run {
-                try {
-                    file.createNewFile()
-                } catch (ex1: IOException) {
-                    ex1.printStackTrace()
-                }
-            }
-        }
     }
 }
