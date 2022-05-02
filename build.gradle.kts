@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib-jdk8"))
-    compileOnly("nl.chimpgamer.networkmanager:api:2.10.0")
+    compileOnly("nl.chimpgamer.networkmanager:api:2.11.0")
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
     compileOnly("com.github.Carleslc:Simple-YAML:1.7.2")
 }
