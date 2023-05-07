@@ -1,11 +1,11 @@
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.8.21"
     `maven-publish`
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "nl.chimpgamer.networkmanager.extensions"
-version = "1.0.7"
+version = "1.0.8"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ dependencies {
     compileOnly(kotlin("stdlib-jdk8"))
     compileOnly("nl.chimpgamer.networkmanager:api:2.11.0")
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
-    compileOnly("com.github.Carleslc:Simple-YAML:1.7.2")
+    compileOnly("com.github.Carleslc:Simple-YAML:1.8.3")
 }
 
 tasks {
