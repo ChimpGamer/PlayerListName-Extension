@@ -41,7 +41,7 @@ class Formats(private val playerNameList: PlayerNameList) : FileUtils(playerName
             formats.add(format)
         }
         if (formats.isEmpty()) {
-            playerNameList.logger.warning("There are no formats available. Please add atleast one format to the formats.yml!")
+            playerNameList.logger.warning("There are no formats available. Please add at least one format to the formats.yml!")
         }
         return formats.maxByOrNull { it.priority }
     }
